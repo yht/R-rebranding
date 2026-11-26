@@ -1,0 +1,59 @@
+diff --git a/VERSION-NICK b/VERSION-NICK
+index afb0147f2f..3d0e5a5ed5 100644
+--- a/VERSION-NICK
++++ b/VERSION-NICK
+@@ -1 +1 @@
+-Funny-Looking Kid
++B2B-Enhanced
+\ No newline at end of file
+diff --git a/configure.ac b/configure.ac
+index c35be86ea9..6b3e6192d6 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -30,7 +30,7 @@ m4_define([R_VERSION],
+           m4_bpatsubst(m4_esyscmd([cat VERSION]),
+                        [\([0-9.]*\)\(\w\|\W\)*],
+                        [\1]))
+-AC_INIT([R],[R_VERSION],[https://bugs.r-project.org],[R],[https://www.r-project.org])
++AC_INIT([R-B2B],[R_VERSION],[https://github.com/b2b-web-id/R/issues],[R-B2B],[https://b2b.web.id])
+ AC_CONFIG_SRCDIR([src/include/Defn.h])
+ AC_CONFIG_AUX_DIR([tools])
+ 
+diff --git a/m4/R.m4 b/m4/R.m4
+index bdcfbeabd9..03aed2fcc5 100644
+--- a/m4/R.m4
++++ b/m4/R.m4
+@@ -4300,9 +4300,7 @@ AC_CACHE_CHECK([if libcurl is version 7 and >= 7.28.0], [r_cv_have_curl728],
+ int main() 
+ {
+ #ifdef LIBCURL_VERSION_MAJOR
+-#if LIBCURL_VERSION_MAJOR > 7
+-  exit(1);
+-#elif LIBCURL_VERSION_MAJOR == 7 && LIBCURL_VERSION_MINOR >= 28
++#if LIBCURL_VERSION_MAJOR > 7 || LIBCURL_VERSION_MAJOR == 7 && LIBCURL_VERSION_MINOR >= 28
+   exit(0);
+ #else
+   exit(1);
+diff --git a/src/main/version.c b/src/main/version.c
+index 38a9c91d70..7f92133ce8 100644
+--- a/src/main/version.c
++++ b/src/main/version.c
+@@ -34,7 +34,8 @@ void attribute_hidden PrintGreeting(void)
+     PrintVersion_part_1(buf, 384);
+     Rprintf("%s\n", buf);
+ 
+-    Rprintf(_("R is free software and comes with ABSOLUTELY NO WARRANTY.\n\
++    Rprintf(_("R-B2B Enhanced Distribution -- B2B.Web.ID\n\
++R is free software and comes with ABSOLUTELY NO WARRANTY.\n\
+ You are welcome to redistribute it under certain conditions.\n\
+ Type 'license()' or 'licence()' for distribution details.\n\n"));
+     Rprintf(_("R is a collaborative project with many contributors.\n\
+@@ -155,7 +156,7 @@ void attribute_hidden PrintVersion_part_1(char *s, size_t len)
+ 	snprintf(nick, 128, " -- \"%s\"", R_NICK);
+ 	strcat(s, nick);
+     }
+-    SPRINTF_2("\nCopyright (C) %s The R Foundation for Statistical Computing\n",
++    SPRINTF_2("\nCopyright (C) %s B2B.Web.ID -- R-B2B Enhanced Distribution\n",
+ 	      R_YEAR);
+ /*  strcat(s, "ISBN 3-900051-07-0\n");  */
+     SPRINTF_2("Platform: %s", R_PLATFORM);

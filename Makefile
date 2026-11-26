@@ -1,11 +1,11 @@
-all: update patch build
+all: patch build
 
 init:
-	rm -rf R/*
-	git submodule init
+	git submodule update --init
 
 update:
 	git submodule update --remote
+	cd R && git checkout 54abeec
 
 patch:
 	bash patch.sh
